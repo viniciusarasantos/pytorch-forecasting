@@ -688,7 +688,7 @@ class TimeSeriesDataSet(Dataset):
             # targets and its lagged versions are handled separetely
             if name not in self.target_names and name not in self.lagged_targets:
                 data[name] = self.transform_values(
-                    name, data[name], inverse=False, ignore_na=name in self.lagged_variables
+                    name, data[name], inverse=False
                 )
 
         # save special variables
@@ -798,7 +798,7 @@ class TimeSeriesDataSet(Dataset):
         for name in self.lagged_targets:
             # normalizer only now available
             if name in self.flat_categoricals:
-                data[name] = self.transform_values(name, data[name], inverse=False, ignore_na=True)
+                data[name] = self.transform_values(name, data[name], inverse=False)
 
         # encode constant values
         self.encoded_constant_fill_strategy = {}
